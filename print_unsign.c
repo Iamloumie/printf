@@ -13,7 +13,7 @@ int print_unsigned(va_list args, int flag)
 
 	n = n / 10;
 	num = n;
-	
+
 	(void)flag;
 	if (last < 0)
 	{

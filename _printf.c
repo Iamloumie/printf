@@ -44,7 +44,8 @@ int _printf(const char * const format, ...)
 	va_end(args);
 	return (length);
 }
-/** * handle_conversion - handles conversion specifiers
+/**
+ * handle_conversion - handles conversion specifiers
 * @format: format string
 * @i: pointer to current index in format string
 * @args: va_list of arguments
