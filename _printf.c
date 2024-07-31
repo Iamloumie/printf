@@ -5,7 +5,7 @@
  * @format: identifier to look for.
  * Return: the length of the string.
  */
-int _printf(const char * const format, ...)
+int _printf(const char *format, ...)
 {
 	print p[] = {
 		{"%%", spec_37}, {"%b", bin_spec}, {"%c", c_spec}, {"%d", d_spec},

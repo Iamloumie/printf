@@ -39,7 +39,7 @@ int ptr_spec(va_list args);
 int print_HEX_xtra(unsigned int num);
 int excl_str(va_list args);
 int print_hex_xtra(unsigned int num);
-int _printf(const char * const format, ...);
+int _printf(const char *format, ...);
 int flush_buffer(char buffer[], int *buffer_index);
 int buffer_char(char c, char buffer[], int *buffer_index);
 
