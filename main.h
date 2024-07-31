@@ -2,6 +2,7 @@
 #define MAIN_H
 
 #include <stdio.h>
+#include <limits.h>
 #include <stddef.h>
 #include <stdlib.h>
 #include <unistd.h>
@@ -13,7 +14,8 @@
  * @spec: function for the conversion specifier
  *
  */
-typedef struct format {
+typedef struct format
+{
 	char *str;
 	int (*spec)();
 } print;
@@ -37,7 +39,7 @@ int ptr_spec(va_list args);
 int print_HEX_xtra(unsigned int num);
 int excl_str(va_list args);
 int print_hex_xtra(unsigned int num);
-int _printf(const char * format, ...);
+int _printf(const char * const format, ...);
 int flush_buffer(char buffer[], int *buffer_index);
 int buffer_char(char c, char buffer[], int *buffer_index);
 
