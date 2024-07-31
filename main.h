@@ -1,57 +1,45 @@
 #ifndef MAIN_H
 #define MAIN_H
 
-#include <limits.h>
 #include <stdio.h>
-#include <stdarg.h>
-#include <stdlib.h>
 #include <stddef.h>
+#include <stdlib.h>
 #include <unistd.h>
-
-
+#include <stdarg.h>
 
 /**
  * struct format - converter for printf
- * @ph: type char pointer of the specifier
- * @function: function for the conversion specifier
+ * @str: type char pointer of the specifier
+ * @spec: function for the conversion specifier
  *
  */
+typedef struct format {
+	char *str;
+	int (*spec)();
+} print;
 
-typedef struct format
-{
-	char *ph;
-	int (*function)(va_list, int);
-} convert;
-
-int *_strcpy(char *dest, char *src);
-int print_pointer(va_list val, int flag);
-int print_unsigned(va_list args, int flag);
-int print_hex_extra(unsigned long int num);
-int _strlenc(const char *s);
-int print_HEX_extra(unsigned int num);
-int print_exc_string(va_list val, int flag);
-int print_HEX(va_list val, int flag);
-int print_hex(va_list val, int flag);
-int print_oct(va_list val, int flag);
-int print_bin(va_list val, int flag);
-int print_revs(va_list args, int flag);
-int print_rot13(va_list args, int flag);
-int print_i(va_list args, int flag);
-int print_d(va_list args, int flag);
-int _strlen(char *s);
-int rev_string(char *s);
-int print_37(va_list val, int flag);
-int print_c(va_list val, int flag);
-int print_s(va_list val, int flag);
 int _putchar(char c);
-int _printf(const char *format, ...);
-int print_dflagplus(va_list args, int flag);
-int print_dflagspace(va_list args, int flag);
-int print_HEXhash(va_list val, int flag);
-int print_hexhash(va_list val, int flag);
-int print_iflagplus(va_list args, int flag);
-int print_intspace(va_list args, int flag);
-int handle_conversion(const char *format, int *i, va_list args, convert *p);
+int spec_37(void);
+int bin_spec(va_list args);
+int c_spec(va_list args);
+int d_spec(va_list args);
+int i_spec(va_list args);
+int HEX_spec(va_list args);
+int hex_spec(va_list args);
+int o_spec(va_list args);
+int rev_str_spec(va_list args);
+int rot13_spec(va_list args);
+int _strlen(char *str);
+int _strlenc(const char *str);
+int str_spec(va_list args);
+int u_spec(va_list args);
+int ptr_spec(va_list args);
+int print_HEX_xtra(unsigned int num);
+int excl_str(va_list args);
+int print_hex_xtra(unsigned int num);
+int _printf(const char * format, ...);
+int flush_buffer(char buffer[], int *buffer_index);
+int buffer_char(char c, char buffer[], int *buffer_index);
 
 
 

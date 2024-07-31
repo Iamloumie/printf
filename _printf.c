@@ -1,4 +1,5 @@
 #include "main.h"
+#define BUFFER_SIZE 1024
 /**
  * _printf - is a function that selects the correct function to print.
  * @format: identifier to look for.
@@ -6,82 +7,41 @@
  */
 int _printf(const char * const format, ...)
 {
-	convert p[] = {
-		{"%s", print_s}, {"%c", print_c},
-		{"%%", print_37},
-		{"%i", print_i}, {"%d", print_d}, {"%r", print_revs},
-		{"%R", print_rot13}, {"%b", print_bin},
-		{"%u", print_unsigned},
-		{"%o", print_oct}, {"%x", print_hex}, {"%X", print_HEX},
-		{"%S", print_exc_string}, {"%p", print_pointer}
+	print p[] = {
+		{"%%", spec_37}, {"%b", bin_spec}, {"%c", c_spec}, {"%d", d_spec},
+		{"%i", i_spec}, {"%X", HEX_spec}, {"%x", hex_spec}, {"%o", o_spec},
+		{"%r", rev_str_spec}, {"%R", rot13_spec}, {"%s", str_spec}, {"%u", u_spec},
+		{"%p", ptr_spec}, {"%S", excl_str}
 	};
-
 	va_list args;
-	int i = 0, length = 0, conv_len;
-
-	if (format == NULL || (format[0] == '%' && format[1] == '\0'))
-		return (-1);
+	int i = 0, j, length = 0, buffer_index = 0;
+	char buffer[BUFFER_SIZE];
 
 	va_start(args, format);
-	while (format[i])
+	if (format == NULL || (format[0] == '%' && format[1] == '\0'))
 	{
-		if (format[i] == '%')
+		return (-1);
+	}
+	while (format[i] != '\0')
+	{
+		for (j = 13; j >= 0; j--)
 		{
-			conv_len = handle_conversion(format, &i, args, p);
+			if ((p[j].str[0] == format[i]) && (p[j].str[1] == format[i + 1]))
 			{
-				if (conv_len == -1)
-					return (-1);
-				length += conv_len;
+				length += flush_buffer(buffer, &buffer_index);
+				length += p[j].spec(args);
+				i = i + 2;
+				break;
 			}
 		}
-		else
+		if (j < 0)
 		{
-			_putchar(format[i]);
-			length++;
+			length += buffer_char(format[i], buffer, &buffer_index);
+			i++;
 		}
-		i++;
 	}
+	length += flush_buffer(buffer, &buffer_index);
+
 	va_end(args);
 	return (length);
-}
-/**
- * handle_conversion - handles conversion specifiers
-* @format: format string
-* @i: pointer to current index in format string
-* @args: va_list of arguments
-* @p: array of pair structures
-* Return: length of converted string or -1 on error
-*/
-int handle_conversion(const char *format, int *i, va_list args, convert *p)
-{
-	int j, flag = 0;
-
-	(*i)++;
-	if (format[*i] == '#')
-	{
-		flag = 1;
-		(*i)++;
-	}
-	if (format[*i] == ' ')
-	{
-		flag = 1;
-		(*i)++;
-	}
-	if (format[*i] == '+')
-	{
-		flag = 1;
-		(*i)++;
-	}
-
-	for (j = 13; j >= 0; j--)
-	{
-		if (p[j].ph[1] == format[*i])
-			return (p[j].function(args, flag));
-	}
-	if (format[*i] == '\0')
-		return (-1);
-
-	_putchar('%');
-	_putchar(format[*i]);
-	return (2);
 }

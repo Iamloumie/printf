@@ -1,17 +1,15 @@
 #include "main.h"
 
 /**
- * print_HEXhash - prints an hexgecimal number.
- * @val: arguments.
- * @flag: incoming flag
+ * print_HEX_xtra - prints an hexgecimal number.
+ * @num: number to print.
  * Return: counter.
  */
-int print_HEXhash(va_list val, int flag)
+int print_HEX_xtra(unsigned int num)
 {
 	int i;
 	int *array;
 	int counter = 0;
-	unsigned int num = va_arg(val, unsigned int);
 	unsigned int tem = num;
 
 	while (num / 16 != 0)
@@ -21,19 +19,11 @@ int print_HEXhash(va_list val, int flag)
 	}
 	counter++;
 	array = malloc(counter * sizeof(int));
-	if (array == NULL)
-		return (-1);
 
 	for (i = 0; i < counter; i++)
 	{
 		array[i] = tem % 16;
 		tem /= 16;
-	}
-	if (flag && array[0] != 0)
-	{
-		_putchar('0');
-		_putchar('X');
-		counter += 2;
 	}
 	for (i = counter - 1; i >= 0; i--)
 	{
