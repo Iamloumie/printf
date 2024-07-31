@@ -24,6 +24,10 @@ int main(void)
     printf("Negative:[%d]\n", -762534);
     _printf("Unsigned:[%u]\n", ui);
     printf("Unsigned:[%u]\n", ui);
+	printf("long int: [%li]\n", ui);
+	_printf("short oct: [%ho]\n", ui);
+	_printf("long oct: [%lo]\n", ui);
+	printf("long oct: [%lo]\n", ui);
     _printf("Unsigned octal:[%o]\n", ui);
     printf("Unsigned octal:[%o]\n", ui);
     _printf("Unsigned hexadecimal:[%x, %X]\n", ui, ui);

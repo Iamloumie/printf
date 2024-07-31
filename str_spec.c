@@ -13,13 +13,21 @@ int str_spec(va_list val)
 	str = va_arg(val, char *);
 	if (str == NULL)
 	{
-		return (-1);
+		str = "(null)";
+		len = _strlen(str);
+		for (i = 0; i < len; i++)
+		{
+			_putchar(str[i]);
+		}
+		return (len);
 	}
-
-	len = _strlen(str);
-	for (i = 0; i < len; i++)
+	else
 	{
-		_putchar(str[i]);
+		len = _strlen(str);
+		for (i = 0; i < len; i++)
+		{
+			_putchar(str[i]);
+		}
+		return (len);
 	}
-	return (len);
 }

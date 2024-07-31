@@ -5,7 +5,7 @@
  * @num: number to print.
  * Return: counter.
  */
-int print_hex_xtra(unsigned int num)
+int print_hex_xtra(unsigned long int num)
 {
 	char digits[] = "0123456789abcdef";
 	char buffer[sizeof(unsigned long int) * 2];

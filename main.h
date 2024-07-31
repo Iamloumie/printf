@@ -38,11 +38,20 @@ int u_spec(va_list args);
 int ptr_spec(va_list args);
 int print_HEX_xtra(unsigned int num);
 int excl_str(va_list args);
-int print_hex_xtra(unsigned int num);
+int print_hex_xtra(unsigned long int num);
 int _printf(const char *format, ...);
 int flush_buffer(char buffer[], int *buffer_index);
 int buffer_char(char c, char buffer[], int *buffer_index);
+int lng_HEX(va_list args);
+int sht_HEX(va_list args);
+int lng_uns(va_list args);
+int lng_o(va_list args);
+int sht_o(va_list args);
+int lng_i(va_list args);
+int sht_i(va_list args);
 
+int sht_d(va_list args);
+int lng_d(va_list args);
 
 
 #endif

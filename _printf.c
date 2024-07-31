@@ -11,7 +11,9 @@ int _printf(const char *format, ...)
 		{"%%", spec_37}, {"%b", bin_spec}, {"%c", c_spec}, {"%d", d_spec},
 		{"%i", i_spec}, {"%X", HEX_spec}, {"%x", hex_spec}, {"%o", o_spec},
 		{"%r", rev_str_spec}, {"%R", rot13_spec}, {"%s", str_spec}, {"%u", u_spec},
-		{"%p", ptr_spec}, {"%S", excl_str}
+		{"%p", ptr_spec}, {"%S", excl_str}, {"%lX", lng_HEX}, {"%hX", sht_HEX},
+		{"%lu", lng_uns}, {"%lo", lng_o}, {"%ho", sht_o}, {"%li", lng_i},
+		{"%hi", sht_i}, {"%hd", sht_d}, {"%ld", lng_d}
 	};
 	va_list args;
 	int i = 0, j, length = 0, buffer_index = 0;
@@ -24,7 +26,7 @@ int _printf(const char *format, ...)
 	}
 	while (format[i] != '\0')
 	{
-		for (j = 13; j >= 0; j--)
+		for (j = 22; j >= 0; j--)
 		{
 			if ((p[j].str[0] == format[i]) && (p[j].str[1] == format[i + 1]))
 			{
