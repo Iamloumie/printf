@@ -1,60 +1,81 @@
-My first major C project.
+# Custom Printf Implementation
 
-This is the header file for the project
+This project is a custom implementation of the printf function in C
+supporting various format specifiers and additional features.
 
-#ifndef MAIN_H
-#define MAIN_H
+## Files
 
-#include <stdio.h>
-#include <limits.h>
-#include <stddef.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <stdarg.h>
+- `*printf.c`: Main printf implementation
+- `*putchar.c`: Custom putchar function
+- `main.c`: Main program for testing
+- `main.h`: Header file with function prototypes and includes
+- `buffer.c`: Buffer management for output
 
-/\*\*
+### Format Specifier Handlers
 
-- struct format - converter for printf
-- @str: type char pointer of the specifier
-- @spec: function for the conversion specifier
-- */
-  typedef struct format
-  {
-  char *str;
-  int (\*spec)();
-  } print;
+- `c_spec.c`: Character specifier
+- `d_spec.c`: Decimal integer specifier
+- `i_spec.c`: Integer specifier
+- `o_spec.c`: Octal specifier
+- `u_spec.c`: Unsigned integer specifier
+- `x_spec.c`: Lowercase hexadecimal specifier
+- `X_spec.c`: Uppercase hexadecimal specifier
+- `s_spec.c`: String specifier
+- `p_spec.c`: Pointer specifier
+- `b_spec.c`: Binary specifier
+- `r_spec.c`: Reverse string specifier
+- `R_spec.c`: ROT13 string specifier
 
-int \_putchar(char c);
-int spec_37(void);
-int bin_spec(va_list args);
-int c_spec(va_list args);
-int d_spec(va_list args);
-int i_spec(va_list args);
-int HEX_spec(va_list args);
-int hex_spec(va_list args);
-int o_spec(va_list args);
-int rev_str_spec(va_list args);
-int rot13_spec(va_list args);
-int \_strlen(char *str);
-int \_strlenc(const char *str);
-int str_spec(va_list args);
-int u_spec(va_list args);
-int ptr_spec(va_list args);
-int print_HEX_xtra(unsigned int num);
-int excl_str(va_list args);
-int print_hex_xtra(unsigned long int num);
-int \_printf(const char *format, ...);
-int flush_buffer(char buffer[], int *buffer_index);
-int buffer_char(char c, char buffer[], int \*buffer_index);
-int lng_HEX(va_list args);
-int sht_HEX(va_list args);
-int lng_uns(va_list args);
-int lng_o(va_list args);
-int sht_o(va_list args);
-int lng_i(va_list args);
-int sht_i(va_list args);
+### Extended Functionality
 
-int sht_d(va_list args);
-int lng_d(va_list args);
+- `long_d.c`: Long decimal integer handling
+- `long_i.c`: Long integer handling
+- `long_o.c`: Long octal handling
+- `long_u.c`: Long unsigned integer handling
+- `long_x.c`: Long lowercase hexadecimal handling
+- `long_X.c`: Long uppercase hexadecimal handling
+- `short_d.c`: Short decimal integer handling
+- `short_i.c`: Short integer handling
+- `short_o.c`: Short octal handling
+- `short_u.c`: Short unsigned integer handling
+- `short_x.c`: Short lowercase hexadecimal handling
+- `short_X.c`: Short uppercase hexadecimal handling
 
-#endif
+### Utility Functions
+
+- `str_len.c`: String length calculation
+- `print_hex_xtra.c`: Additional hexadecimal printing functionality
+- `print_HEX_xtr.c`: Additional uppercase hexadecimal printing functionality
+
+## Compilation
+
+To compile the project, use the following command:
+
+gcc -Wall -Werror -Wextra -pedantic \*.c -o printf
+
+## Usage
+
+After compilation, run the program with:
+./printf
+
+## Features
+
+This custom printf implementation supports the following format specifiers:
+
+- `%c`: Character
+- `%s`: String
+- `%d` and `%i`: Integer
+- `%u`: Unsigned integer
+- `%o`: Octal
+- `%x`: Lowercase hexadecimal
+- `%X`: Uppercase hexadecimal
+- `%p`: Pointer address
+- `%b`: Binary
+- `%r`: Reverse string
+- `%R`: ROT13 encoded string
+
+It also supports length modifiers for long and short integers.
+
+## Author
+
+Lawal Adedamola Olumide
